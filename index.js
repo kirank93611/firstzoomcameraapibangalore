@@ -7,6 +7,10 @@ const mongoose=require('mongoose')
 const app=express();
 //using middleware for serializtion into json
 app.use(express.json())
+
+//using middleware for urlencoded
+app.use(express.urlencoded({extended:false}))
+
 //specifing the PORT of the application
 const PORT=3000;
 
