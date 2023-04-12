@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-const cameranetwork=require('./cameraModels.js')
 const cameraSchema=mongoose.Schema(
     {
         name:{
@@ -14,7 +13,6 @@ const cameraSchema=mongoose.Schema(
             type:String,
             required:[true,"please enter the endpoint url of the camera"]
         },
-        cameranetworkid:[{type:mongoose.Schema.Types.ObjectId,ref:'cameranetwork'}]
     },
     {
         timestamp:true

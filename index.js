@@ -1,35 +1,37 @@
-const express=require('express')
-const bodyParser= require('body-parser')
-const cameraRoutes= require('./routes/camera.js')
+const express = require('express')
+const bodyParser = require('body-parser')
+const cameraRoutes = require('./routes/camera.js')
+const cameraNetworkRoutes = require('./routes/cameraNetworkroutes.js')
 //mongoose 
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 //initializing express application
-const app=express();
+const app = express();
 //using middleware for serializtion into json
 app.use(express.json())
 
 //using middleware for urlencoded
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({ extended: false }))
 
 //specifing the PORT of the application
-const PORT=3000;
+const PORT = 3000;
 
 //initializing the body Parser middleware
 app.use(bodyParser.json());
 
 //using the new routes that have been created
-app.use('/',cameraRoutes);
+app.use('/', cameraRoutes);
+app.use('/', cameraNetworkRoutes);
 // app.get('/',(req,res)=>res.send('hello from Homepage.'));
- 
+
 
 //mongoose connection
-mongoose.set("strictQuery",false)
+mongoose.set("strictQuery", false)
 mongoose.
-connect('mongodb+srv://kiranambujashoba:qj2XxCRTO0QWxO9P@cameracluster.axosjy0.mongodb.net/Camera-API?retryWrites=true&w=majority')
-.then(()=>{
-    //making our application listen for the incoming requests
-    app.listen(PORT,()=>console.log(`server on port http://localhost:${PORT}`));
-    console.log('connected to MongoDB')
-}).catch((error)=>{
-    console.log(error)
-})
+    connect('mongodb+srv://kiranambujashoba:qj2XxCRTO0QWxO9P@cameracluster.axosjy0.mongodb.net/Camera-API?retryWrites=true&w=majority')
+    .then(() => {
+        //making our application listen for the incoming requests
+        app.listen(PORT, () => console.log(`server on port http://localhost:${PORT}`));
+        console.log('connected to MongoDB')
+    }).catch((error) => {
+        console.log(error)
+    })
